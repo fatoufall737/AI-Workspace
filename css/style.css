@@ -1,0 +1,116 @@
+/* ==========================================================
+   Partie 2 - Design CSS de l'AI Workspace
+   ========================================================== */
+
+
+/* --- Réinitialisation CSS --- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* --- Style général de la page --- */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: whitesmoke;
+    color: black;
+}
+
+
+/* --- Entête --- */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: white;
+    padding: 16px 32px;
+
+    border-bottom: 1px solid lightgray;
+}
+
+
+.header__title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+/* --- Organisation principale --- */
+
+.layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+
+    min-height: calc(100vh - 64px);
+}
+
+
+/* --- Barre latérale --- */
+
+.sidebar {
+    background-color: white;
+
+    border-right: 1px solid lightgray;
+
+    padding: 24px 0;
+}
+
+
+.sidebar__menu {
+    list-style: none;
+}
+
+
+.sidebar__link {
+    display: block;
+
+    padding: 12px 24px;
+
+    color: dimgray;
+    text-decoration: none;
+
+    transition: background-color 0.2s;
+}
+
+
+.sidebar__link:hover {
+    background-color: whitesmoke;
+}
+
+
+/* --- Élément actif du menu --- */
+
+.sidebar__link.active {
+    background-color: aliceblue;
+
+    color: dodgerblue;
+
+    font-weight: bold;
+
+    border-right: 3px solid dodgerblue;
+}
+
+
+/* --- Zone principale --- */
+
+.main-content {
+    padding: 32px;
+}
+
+
+.main-content h2 {
+    margin-bottom: 8px;
+}
+
+
+.main-content p {
+    color: gray;
+
+    margin-bottom: 24px;
+}

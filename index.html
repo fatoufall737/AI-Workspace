@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Workspace</title>
+</head>
+<body>
+
+    <!-- Entête de l'interface : contient le titre du site et la zone utilisateur -->
+    <header class="header">
+        <h1 class="header__title">AI Workspace</h1>
+        <div class="header__user">
+            <span>Admin User</span>
+        </div>
+    </header>
+
+    <!-- Conteneur principal qui organise la sidebar et le contenu côte à côte -->
+    <div class="layout">
+
+        <!-- Barre latérale (sidebar) : menu de navigation vers les différents modules -->
+        <nav class="sidebar">
+            <ul class="sidebar__menu">
+                <li><a href="#" class="sidebar__link active" data-module="dashboard">Tableau de bord</a></li>
+                <li><a href="#" class="sidebar__link" data-module="chat">Chat</a></li>
+                <li><a href="#" class="sidebar__link" data-module="resume">Résumé de texte</a></li>
+                <li><a href="#" class="sidebar__link" data-module="traduction">Traduction</a></li>
+                <li><a href="#" class="sidebar__link" data-module="prediction">Prédiction</a></li>
+                <li><a href="#" class="sidebar__link" data-module="historique">Historique</a></li>
+            </ul>
+        </nav>
+
+        <!-- Zone principale : son contenu sera changé dynamiquement par script.js selon le module cliqué -->
+        <main class="main-content" id="main-content">
+            <h2>Tableau de bord</h2>
+            <p>Bienvenue sur votre espace de travail intelligent.</p>
+        </main>
+
+    </div>
+
+    <!-- Chargement du fichier JavaScript, placé en fin de body pour que le HTML soit chargé avant -->
+    <script src="js/script.js"></script>
+</body>
+</html>

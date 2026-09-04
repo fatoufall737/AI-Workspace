@@ -2,6 +2,8 @@
 // AI Workspace
 // Partie 3 : Résumé de texte
 // Partie 4 : Traduction
+// Partie 5 : Chat IA
+// Navigation entre les modules
 // ==========================================================
 
 
@@ -9,18 +11,29 @@
 // Récupération des éléments de la page
 // ==========================================================
 
-// Zone principale de l'application
 const mainContent = document.getElementById("main-content");
 
-// Récupération des liens du menu
 const menuLinks = document.querySelectorAll(".sidebar__link");
+
+// On garde le contenu du tableau de bord
+// pour pouvoir le réafficher après avoir ouvert un autre module.
+const dashboardContent = mainContent.innerHTML;
+
+
+// ==========================================================
+// Fonction pour afficher le tableau de bord
+// ==========================================================
+
+function afficherDashboard() {
+
+    mainContent.innerHTML = dashboardContent;
+}
 
 
 // ==========================================================
 // Partie 3 - Module de résumé de texte
 // ==========================================================
 
-// Fonction qui affiche le module de résumé
 function afficherResume() {
 
     mainContent.innerHTML = `
@@ -45,19 +58,13 @@ function afficherResume() {
         <div id="resultat-resume"></div>
     `;
 
-    // Récupération du bouton Résumer
     const boutonResumer = document.getElementById("bouton-resumer");
 
-    // Action lors du clic sur le bouton
     boutonResumer.addEventListener("click", function () {
 
-        // Récupération du texte saisi
         const texte = document.getElementById("texte-a-resumer").value;
-
-        // Zone où le résultat sera affiché
         const resultat = document.getElementById("resultat-resume");
 
-        // Vérification si le champ est vide
         if (texte.trim() === "") {
 
             resultat.innerHTML = `
@@ -69,15 +76,13 @@ function afficherResume() {
             return;
         }
 
-        // Résumé simulé de la Partie 3
         resultat.innerHTML = `
             <h3>Résumé</h3>
 
             <p>
                 Ceci est un résumé simulé du texte saisi.
                 Dans une version complète, une API d'intelligence
-                artificielle pourrait être utilisée pour générer
-                automatiquement le résumé.
+                artificielle pourra être utilisée.
             </p>
         `;
     });
@@ -88,7 +93,6 @@ function afficherResume() {
 // Partie 4 - Module de traduction
 // ==========================================================
 
-// Fonction qui affiche le module de traduction
 function afficherTraduction() {
 
     mainContent.innerHTML = `
@@ -113,11 +117,17 @@ function afficherTraduction() {
 
         <select id="langue-cible">
 
-            <option value="en">Anglais</option>
+            <option value="en">
+                Anglais
+            </option>
 
-            <option value="fr">Français</option>
+            <option value="fr">
+                Français
+            </option>
 
-            <option value="es">Espagnol</option>
+            <option value="es">
+                Espagnol
+            </option>
 
         </select>
 
@@ -130,22 +140,21 @@ function afficherTraduction() {
         <div id="resultat-traduction"></div>
     `;
 
-    // Récupération du bouton Traduire
-    const boutonTraduire = document.getElementById("bouton-traduire");
+    const boutonTraduire =
+        document.getElementById("bouton-traduire");
 
-    // Action lors du clic sur le bouton
     boutonTraduire.addEventListener("click", async function () {
 
-        // Récupération du texte saisi
-        const texte = document.getElementById("texte-a-traduire").value;
+        const texte =
+            document.getElementById("texte-a-traduire").value;
 
-        // Récupération de la langue choisie
-        const langue = document.getElementById("langue-cible").value;
+        const langue =
+            document.getElementById("langue-cible").value;
 
-        // Zone où le résultat sera affiché
-        const resultat = document.getElementById("resultat-traduction");
+        const resultat =
+            document.getElementById("resultat-traduction");
 
-        // Vérification si le champ est vide
+
         if (texte.trim() === "") {
 
             resultat.innerHTML = `
@@ -157,16 +166,16 @@ function afficherTraduction() {
             return;
         }
 
-        // Message affiché pendant la traduction
+
         resultat.innerHTML = `
             <p>
                 Traduction en cours...
             </p>
         `;
 
+
         try {
 
-            // Envoi de la demande à l'API LibreTranslate
             const response = await fetch(
                 "http://127.0.0.1:5000/translate",
                 {
@@ -177,23 +186,15 @@ function afficherTraduction() {
                     },
 
                     body: JSON.stringify({
-
-                        // Texte à traduire
                         q: texte,
-
-                        // Détection automatique de la langue source
                         source: "auto",
-
-                        // Langue choisie par l'utilisateur
                         target: langue,
-
-                        // Type de texte
                         format: "text"
                     })
                 }
             );
 
-            // Vérification de la réponse de l'API
+
             if (!response.ok) {
 
                 throw new Error(
@@ -201,10 +202,10 @@ function afficherTraduction() {
                 );
             }
 
-            // Conversion de la réponse en JSON
+
             const data = await response.json();
 
-            // Affichage du résultat
+
             resultat.innerHTML = `
                 <h3>Traduction</h3>
 
@@ -215,7 +216,6 @@ function afficherTraduction() {
 
         } catch (error) {
 
-            // Message affiché si l'API ne répond pas
             resultat.innerHTML = `
                 <p>
                     Impossible de contacter le service de traduction.
@@ -228,54 +228,127 @@ function afficherTraduction() {
 
 
 // ==========================================================
-// Gestion du menu
+// Partie 5 - Module Chat IA
 // ==========================================================
 
-// Parcours de tous les liens du menu
+function afficherChat() {
+
+    mainContent.innerHTML = `
+        <h2>Chat IA</h2>
+
+        <p>
+            Posez une question au Chat IA.
+        </p>
+
+        <textarea
+            id="message-chat"
+            rows="6"
+            placeholder="Écrivez votre message ici..."
+        ></textarea>
+
+        <br><br>
+
+        <button id="bouton-chat">
+            Envoyer
+        </button>
+
+        <div id="reponse-chat"></div>
+    `;
+
+
+    const boutonChat =
+        document.getElementById("bouton-chat");
+
+
+    boutonChat.addEventListener("click", function () {
+
+        const message =
+            document.getElementById("message-chat").value;
+
+        const reponse =
+            document.getElementById("reponse-chat");
+
+
+        if (message.trim() === "") {
+
+            reponse.innerHTML = `
+                <p>
+                    Veuillez écrire un message.
+                </p>
+            `;
+
+            return;
+        }
+
+
+        reponse.innerHTML = `
+            <h3>Réponse du Chat IA</h3>
+
+            <p>
+                Bonjour ! Ceci est une réponse simulée du Chat IA.
+                Dans une version complète, une API d'intelligence
+                artificielle pourra être utilisée.
+            </p>
+        `;
+    });
+}
+
+
+// ==========================================================
+// Gestion de la navigation
+// ==========================================================
+
 menuLinks.forEach(function (link) {
 
-    // Détection du clic sur un lien
     link.addEventListener("click", function (event) {
 
-        // Empêche le comportement par défaut du lien
         event.preventDefault();
 
-        // Suppression de la classe active
-        // sur tous les éléments du menu
+
+        // Retire la classe active de tous les liens
         menuLinks.forEach(function (item) {
 
             item.classList.remove("active");
 
         });
 
-        // Ajout de la classe active
-        // sur le lien sélectionné
+
+        // Ajoute la classe active au lien sélectionné
         link.classList.add("active");
 
-        // Récupération du module sélectionné
-        const module = link.getAttribute("data-module");
+
+        // Récupère le module demandé
+        const module =
+            link.getAttribute("data-module");
 
 
-        // --------------------------------------------------
-        // Affichage du module Résumé
-        // --------------------------------------------------
+        // Affichage du tableau de bord
+        if (module === "dashboard") {
 
+            afficherDashboard();
+        }
+
+
+        // Affichage du chat
+        if (module === "chat") {
+
+            afficherChat();
+        }
+
+
+        // Affichage du résumé
         if (module === "resume") {
 
             afficherResume();
-
         }
 
 
-        // --------------------------------------------------
-        // Affichage du module Traduction
-        // --------------------------------------------------
-
+        // Affichage de la traduction
         if (module === "traduction") {
 
             afficherTraduction();
-
         }
 
     });
+
 });

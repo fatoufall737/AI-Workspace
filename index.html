@@ -31,13 +31,215 @@
             </ul>
         </nav>
 
-        <!-- Zone principale : son contenu sera changé dynamiquement par script.js selon le module cliqué -->
-        <main class="main-content" id="main-content">
-            <h2>Tableau de bord</h2>
-            <p>Bienvenue sur votre espace de travail intelligent.</p>
+      <main id="main-content">
+
+            <!-- TABLEAU DE BORD -->
+
+            <section id="dashboard">
+
+                <h2>Tableau de bord</h2>
+
+                <p>
+                    Bienvenue sur votre espace de travail intelligent.
+                </p>
+
+            </section>
+
+
+            <section>
+
+                <article>
+                    <h3>Nombre de jeux de données</h3>
+                    <strong id="dataset-count">24</strong>
+                    <span id="dataset-evolution">+3 ce mois-ci</span>
+                </article>
+
+                <article>
+                    <h3>Nombre de requêtes</h3>
+                    <strong id="request-count">1 256</strong>
+                    <span id="request-evolution">+18% ce mois-ci</span>
+                </article>
+
+                <article>
+                    <h3>Nombre de modèles disponibles</h3>
+                    <strong id="model-count">12</strong>
+                    <span id="model-evolution">+2 ce mois-ci</span>
+                </article>
+
+                <article>
+                    <h3>Utilisateurs actifs</h3>
+                    <strong id="user-count">8</strong>
+                    <span id="user-evolution">+2 ce mois-ci</span>
+                </article>
+
+                <article>
+                    <h3>Tâches exécutées</h3>
+                    <strong id="task-count">342</strong>
+                    <span id="task-evolution">+22% ce mois-ci</span>
+                </article>
+
+            </section>
+
+
+            <section>
+
+                <article>
+
+                    <h3>Requêtes par jour</h3>
+
+                    <select>
+                        <option>7 derniers jours</option>
+                    </select>
+
+                    <div id="courbe">
+                        <img src="images/Capture1.PNG" alt="Requêtes par jour">
+                    </div>
+
+                </article>
+
+
+                <article>
+
+                    <h3>Répartition des requêtes par service</h3>
+
+                    <div id="diagramme">
+                        <img src="images/Capture2.PNG" alt="Répartition des requêtes par service">
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <section>
+
+                <article>
+
+                    <h3>Activité récente</h3>
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Activité</th>
+                                <th>Service</th>
+                                <th>Utilisateur</th>
+                                <th>Date</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="recent-activities">
+
+                            <tr>
+                                <td>Résumé du document_projet.pdf</td>
+                                <td>Résumé de texte</td>
+                                <td>Admin User</td>
+                                <td>21/05/2024 14:32</td>
+                            </tr>
+
+                            <tr>
+                                <td>Classification de sentiments</td>
+                                <td>Classification</td>
+                                <td>Admin User</td>
+                                <td>21/05/2024 14:21</td>
+                            </tr>
+
+                            <tr>
+                                <td>Traduction FR → EN</td>
+                                <td>Traduction</td>
+                                <td>Admin User</td>
+                                <td>21/05/2024 14:16</td>
+                            </tr>
+
+                            <tr>
+                                <td>Discussion sur l'IA générative</td>
+                                <td>Chat</td>
+                                <td>Admin User</td>
+                                <td>21/05/2024 14:05</td>
+                            </tr>
+
+                            <tr>
+                                <td>Génération d'idées de projet</td>
+                                <td>Idées</td>
+                                <td>Admin User</td>
+                                <td>21/05/2024 13:50</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                    <a href="#" data-page="historique">
+                        Voir tout l'historique
+                    </a>
+
+                </article>
+
+
+                <article>
+
+                    <h3>Modèles populaires</h3>
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Modèle</th>
+                                <th>Utilisations</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="popular-models">
+
+                            <tr>
+                                <td>mistral-7b-instruct</td>
+                                <td>532</td>
+                            </tr>
+
+                            <tr>
+                                <td>gpt-4-turbo</td>
+                                <td>389</td>
+                            </tr>
+
+                            <tr>
+                                <td>llama-3-8b</td>
+                                <td>256</td>
+                            </tr>
+
+                            <tr>
+                                <td>bert-base-uncased</td>
+                                <td>179</td>
+                            </tr>
+
+                            <tr>
+                                <td>google-translate-v1</td>
+                                <td>142</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                    <a href="#" data-page="modeles">
+                        Voir tous les modèles
+                    </a>
+
+                </article>
+
+            </section>
+
         </main>
 
     </div>
+
+
+    
+
+    
 
     <!-- Chargement du fichier JavaScript, placé en fin de body pour que le HTML soit chargé avant -->
     <script src="js/script.js"></script>
